@@ -25,9 +25,6 @@ public class FaceDetection extends JFrame{
 	
 	
 	private JButton 			buttonEdges,
-								buttonGray, 
-								buttonSepia, 
-								buttonInvert, 
 								buttonReset;
 	
 	private MarvinImagePlugin 	imagePlugin;
@@ -41,20 +38,11 @@ public class FaceDetection extends JFrame{
 		ButtonHandler buttonHandler = new ButtonHandler();
 		buttonEdges = new JButton("Edges");
 		buttonEdges.addActionListener(buttonHandler);
-		buttonGray = new JButton("Gray");
-		buttonGray.addActionListener(buttonHandler);
-		buttonSepia = new JButton("Sepia");
-		buttonSepia.addActionListener(buttonHandler);
-		buttonInvert = new JButton("Invert");
-		buttonInvert.addActionListener(buttonHandler);
 		buttonReset = new JButton("Reset");
 		buttonReset.addActionListener(buttonHandler);
 		
 		panelBottom = new JPanel();
 		panelBottom.add(buttonEdges);
-		panelBottom.add(buttonGray);
-		panelBottom.add(buttonSepia);
-		panelBottom.add(buttonInvert);
 		panelBottom.add(buttonReset);
 		
 		// ImagePanel
@@ -90,19 +78,6 @@ public class FaceDetection extends JFrame{
 			image = backupImage.clone();
 			if(a_event.getSource() == buttonEdges){
 				imagePlugin = MarvinPluginLoader.loadImagePlugin("org.marvinproject.image.edge.edgeDetector.jar");
-				imagePlugin.process(image, image);
-			}
-			else if(a_event.getSource() == buttonGray){
-				imagePlugin = MarvinPluginLoader.loadImagePlugin("org.marvinproject.image.color.grayScale.jar");
-				imagePlugin.process(image, image);
-			}
-			else if(a_event.getSource() == buttonSepia){
-				imagePlugin = MarvinPluginLoader.loadImagePlugin("org.marvinproject.image.color.sepia.jar");
-				imagePlugin.setAttribute("hsIntensidade", 50);				
-				imagePlugin.process(image, image);
-			}
-			else if(a_event.getSource() == buttonInvert){
-				imagePlugin = MarvinPluginLoader.loadImagePlugin("org.marvinproject.image.color.invert.jar");
 				imagePlugin.process(image, image);
 			}
 			image.update();
